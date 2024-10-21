@@ -159,7 +159,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true'
       run: |
-        echo "release_tag=ZN-M2-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=v$(date +"%Y.%m.%d.%H%M")-ZN-M2" >> $GITHUB_OUTPUT
         touch release.txt
         echo "ZN-M2 firmware" >> release.txt
         grep luci-app-passwall ${{ env.FIRMWARE }}/openwrt-ipq60xx-generic-device-zn-m2.manifest | awk -F" - " '{print "Passwall " "`"$2"`"}' >> release.txt

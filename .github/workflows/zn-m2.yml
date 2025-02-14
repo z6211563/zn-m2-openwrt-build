@@ -110,6 +110,14 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P3_SH
 
+    - name: Install Lua 5.1
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y lua5.1 liblua5.1-0-dev
+
+    - name: Create Lua symlink
+      run: sudo ln -s /usr/bin/lua /usr/bin/lua5.1
+
     - name: Download package
       id: package
       run: |

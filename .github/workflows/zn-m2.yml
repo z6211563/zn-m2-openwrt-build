@@ -62,7 +62,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         curl -s https://raw.githubusercontent.com/immortalwrt/build-scripts/master/init_build_environment.sh | sudo bash
-        sudo apt-get install -y rename pigz libfuse-dev upx subversion clang lua5.1  # 添加 lua5.1
+        sudo apt-get install -y rename pigz libfuse-dev upx subversion clang
         sudo apt-get autoremove -y --purge
         sudo apt-get clean
         sudo rm -rf po2lmo
@@ -97,8 +97,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        ./scripts/feeds install lua5.1  # 确保安装 Lua 5.1
-        sed -i 's/DEPENDS:= +lua/DEPENDS:= +lua5.1/' feeds/packages/lang/lyaml/Makefile  # 修改 lyaml 依赖
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
@@ -111,8 +109,6 @@ jobs:
         chmod +x $DIY_P3_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P3_SH
-        echo "CONFIG_PACKAGE_lua=y" >> .config  # 确保启用 Lua
-        echo "CONFIG_PACKAGE_lyaml=y" >> .config  # 确保启用 lyaml
 
     - name: Download package
       id: package

@@ -184,7 +184,6 @@ jobs:
       with:
         name: ${{ steps.tag.outputs.release_name }}
         tag_name: ${{ steps.tag.outputs.release_tag }}
-        prerelease: true
         body_path: release.txt
         files: |
          ${{ env.FIRMWARE }}/*.ubi
